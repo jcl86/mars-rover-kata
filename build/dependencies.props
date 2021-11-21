@@ -1,0 +1,6 @@
+<Project>
+  <PropertyGroup>
+    <NetVersion>net5.0</NetVersion>
+    <RepositoryUrl>https://github.com/jcl86/mars-rover-kata</RepositoryUrl>
+  </PropertyGroup>
+</Project>
