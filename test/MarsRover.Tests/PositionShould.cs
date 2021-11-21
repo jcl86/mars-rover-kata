@@ -21,7 +21,7 @@ namespace MarsRover.Tests
         [InlineData("5 -1 N")]
         public void Fail_to_initialize(string input)
         {
-            Action action = () => new Position(new InputInstructions(input));
+            Action action = () => new Position(Input.FromString(input));
             action.Should().Throw<ArgumentException>();
         }
     }

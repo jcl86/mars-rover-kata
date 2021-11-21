@@ -3,32 +3,30 @@ using System.Linq;
 
 namespace MarsRover.Core
 {
-    public class Grid
+    public record Grid
     {
-        private readonly int width;
-        private readonly int height;
+        public Point Width { get; }
+        public Point Height { get; }
 
-        public Grid(InputInstructions instructions)
+        public Grid(Input instructions)
         {
             var slices = instructions.Slice(' ');
             if (slices.Count() != 2)
             {
                 throw new ArgumentException($"{instructions} is not a valid value for the Grid. Two numbers separated by a space must be provided");
             }
-            if (!int.TryParse(slices.ElementAt(0), out width))
+            if (!int.TryParse(slices.ElementAt(0), out int widthResult))
             {
                 throw new ArgumentException($"{slices.ElementAt(0)} can not be converted to number");
             }
-
-            if (!int.TryParse(slices.ElementAt(1), out height))
+            Width = new Point(widthResult);
+            if (!int.TryParse(slices.ElementAt(1), out int heightResult))
             {
                 throw new ArgumentException($"{slices.ElementAt(1)} can not be converted to number");
             }
+            Height = new Point(heightResult);
         }
 
-        public bool CanBeLocated(Coordinates coordinates) => (coordinates.X > width || coordinates.Y > height);
-
-
-        
+        public bool CanBeLocated(Coordinates coordinates) => coordinates.FitsInWidth(Width) && coordinates.FitsInHeight(Height);
     }
 }
