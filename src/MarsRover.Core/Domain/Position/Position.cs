@@ -31,8 +31,6 @@ namespace MarsRover.Core
             Coordinates = new Coordinates(x, y);
         }
 
-
-
         public Position(Coordinates coordinates, Orientation orientation)
         {
             Coordinates = coordinates;

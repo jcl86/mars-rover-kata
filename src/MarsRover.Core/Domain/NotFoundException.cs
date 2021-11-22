@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MarsRover.Api
+namespace MarsRover.Core
 {
     public class NotFoundException : Exception
     {

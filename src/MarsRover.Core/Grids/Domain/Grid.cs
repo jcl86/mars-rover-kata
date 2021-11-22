@@ -5,8 +5,16 @@ namespace MarsRover.Core
 {
     public record Grid
     {
+        public Guid Id { get; }
         public Point Width { get; }
         public Point Height { get; }
+
+        public Grid(Guid id, int width, int height)
+        {
+            Id = id;
+            Width = new Point(width);
+            Height = new Point(height);
+        }
 
         public Grid(Input instructions)
         {
@@ -25,6 +33,7 @@ namespace MarsRover.Core
                 throw new ArgumentException($"{slices.ElementAt(1)} can not be converted to number");
             }
             Height = new Point(heightResult);
+            Id = Guid.NewGuid();
         }
 
         public bool CanBeLocated(Coordinates coordinates) => coordinates.FitsInWidth(Width) && coordinates.FitsInHeight(Height);

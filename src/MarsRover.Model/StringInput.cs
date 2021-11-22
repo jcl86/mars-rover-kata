@@ -3,9 +3,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace MarsRover.Model
 {
-    public class StringInput
+    public class InputRequest
     {
         [Required]
-        public string Content { get; set; }
+        public string Input { get; set; }
     }
 }

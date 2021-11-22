@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -19,18 +20,10 @@ namespace MarsRover.Api
             this.roverRider = roverRider;
         }
 
-        [HttpPost, Route(Endpoints.Rover.PostStart)]
-        public IActionResult PostStart(StringInput input)
+        [HttpPost, Route(Endpoints.Grids.Base + "/{gridId}/{}")]
+        public IActionResult PostSetPosition(Guid gridId, LocationInput request)
         {
-            var grid = new Grid(Input.FromString(input.Content));
-            roverRider.Start(grid);
-            return Ok();
-        }
-
-        [HttpPost, Route(Endpoints.Rover.PostSetPosition)]
-        public IActionResult PostSetPosition(StringInput input)
-        {
-            roverRider.Locate(Input.FromString(input.Content));
+            roverRider.Locate(Input.FromString(request.Input));
             return Ok();
         }
 
